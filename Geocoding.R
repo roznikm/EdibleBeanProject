@@ -5,17 +5,8 @@ register_google(key="Key_goes_here")
 has_google_key()
 
 ### White beans including navy beans 
-navy_exports <- read_csv('/Users/lysaporth/Documents/Consulting/Marlene/PulseCanada/PulseSupplyChainStudy/Data/ExportsWhiteBeansIncNavy.csv')
-names(navy_exports) <- c("Date", "HS8", "Orgin", "Dest", "ReExport", "Quantity", "CAD")
-navy_2013_exports <- navy_exports %>% filter(Date >= 201301)
-navy_2013_exports$ReExport <- as.factor(navy_2013_exports$ReExport)
-
-location_export <- mutate_geocode(navy_2013_exports, Dest)
-location_export <- mutate_geocode(location_export, Orgin)
-
-write_csv(location_export, path="/Users/lysaporth/Documents/Consulting/Marlene/PulseCanada/PulseSupplyChainStudy/GeocodedData/WhiteBeansExports.csv")
-
-navy_imports <- read_csv('/Users/lysaporth/Documents/Consulting/Marlene/PulseCanada/PulseSupplyChainStudy/Data/ImportsWhiteBeansIncNavy.csv')
+navy_exports <- read_csv('/Users/lysaporth/Documents/Consulting/Marlene/PulseCanada/PulseSupplyChainStudy/GeocodedData/WhiteBeansExports.csv')
+navy_imports <- read_csv('/Users/lysaporth/Documents/Consulting/Marlene/PulseCanada/PulseSupplyChainStudy/GeocodedData/WhiteBeansImports.csv')
 names(navy_imports) <- c("Date", "HS8", "Orgin", "Dest", "DutiableTrade","Duty", "Quantity", "CAD")
 navy_2013_imports <- navy_imports %>% filter(Date >= 201301)
 navy_2013_imports$DutiableTrade <- as.factor(navy_2013_imports$DutiableTrade)

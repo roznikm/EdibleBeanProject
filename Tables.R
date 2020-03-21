@@ -74,8 +74,26 @@ gnb_exports <- read_csv('/Users/lysaporth/Documents/Consulting/Marlene/PulseCana
 tab_data1 <- gnb_exports %>% arrange(desc(CAD))
 write.table(tab_data1[1:10,c('Date', 'Orgin', 'Dest', 'Quantity', 'CAD')], sep = ",", row.names = FALSE)
 
+## Pinto beans
+pinto_exports <- read_csv('/Users/lysaporth/Documents/Consulting/Marlene/PulseCanada/PulseSupplyChainStudy/Data/ExportsPinto.csv')
+names(pinto_exports) <- c("Date", "HS8", "Origin", "Dest", "ReExport", "Quantity", "CAD")
+pinto_exports <- pinto_exports %>% filter(Date >= 201301)
 
+tab_data1 <- pinto_exports %>% arrange(desc(CAD))
+write.table(tab_data1[1:10,c('Date', 'Origin', 'Dest', 'Quantity', 'CAD')], sep = ",", row.names = FALSE)
 
+## Lima Beans 
+lima_frozen_imports <- read_csv('/Users/lysaporth/Documents/Consulting/Marlene/PulseCanada/PulseSupplyChainStudy/Data/ImportsLimaFrozen.csv')
+lima_dry_imports <- read_csv('/Users/lysaporth/Documents/Consulting/Marlene/PulseCanada/PulseSupplyChainStudy/Data/ImportsLimaMadagascarDriedShelled.csv')
+names(lima_frozen_imports) <- c("Date", "HS8", "Orgin", "Dest", "DutiableTrade","Duty", "Quantity", "CAD")
+names(lima_dry_imports) <- c("Date", "HS8", "Orgin", "Dest", "DutiableTrade","Duty", "Quantity", "CAD")
 
+lima_frozen_imports <- lima_frozen_imports %>% filter(Date >= 201301)
+lima_dry_imports <- lima_dry_imports %>% filter(Date >= 201301)
 
+tab_data1 <- lima_frozen_imports %>% arrange(desc(CAD))
+write.table(tab_data1[1:10,c('Date', 'Orgin', 'Dest', 'Quantity', 'CAD')], sep = ",", row.names = FALSE)
+
+tab_data2 <- lima_dry_imports %>% arrange(desc(CAD))
+write.table(tab_data2[1:10,c('Date', 'Orgin', 'Dest', 'Quantity', 'CAD')], sep = ",", row.names = FALSE)
 
